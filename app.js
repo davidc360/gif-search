@@ -9,6 +9,7 @@ const Tenor = require("tenorjs").client({
 
 // App Setup
 const app = express();
+app.use(express.static('public'));
 
 // Middleware
 const exphbs  = require('express-handlebars');
@@ -22,6 +23,7 @@ app.get('/', (req, res) => {
     if (req.query.term) {
         term = req.query.term
     }
+
     Tenor.Search.Query(term, "10")
         .then(response => {
             // store the gifs we get back from the search
